@@ -19,14 +19,14 @@
         "zendframework/zend-db": "^2.8.1",
         "zendframework/zend-mvc-form": "^1.0",
         "datatables/datatables": "^1.10",
-        "jpgraph/jpgraph": "^4.0"
+        "ghunti/highcharts-php": "^3.0"
     },
     "autoload": {
         "psr-4": {
             "Application\\": "module/Application/src/",
             "Album\\": "module/Album/src/",
             "Listes\\": "module/Listes/src/",
-            "Graph\\": "module/Graph/src/"
+            "Hightgraph\\": "module/Hightgraph/src/"            
         }
     },
     "autoload-dev": {

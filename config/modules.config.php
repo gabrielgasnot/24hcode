@@ -18,5 +18,5 @@ return [
     'Application',
     'Album', // <-- Add this line
     'Listes',
-    'Graph'
+    'Hightgraph',
 ];

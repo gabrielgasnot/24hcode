@@ -4,7 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "deeec3b63241ab647b794eac5bfa3e2a",
+    "hash": "b3c0ff97a5b003ca027cff3a6babb804",
+    "content-hash": "843fd8932660d8bc891eea34a509bed9",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -61,44 +62,50 @@
             "time": "2017-08-31T13:52:17+00:00"
         },
         {
-            "name": "jpgraph/jpgraph",
-            "version": "4.0.2",
+            "name": "ghunti/highcharts-php",
+            "version": "v3.0.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/ztec/JpGraph.git",
-                "reference": "e82db7da6a546d3926c24c9a346226da7aa49094"
+                "url": "https://github.com/ghunti/HighchartsPHP.git",
+                "reference": "548b321478510ec1559432a9baabbfba1a1e559a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ztec/JpGraph/zipball/e82db7da6a546d3926c24c9a346226da7aa49094",
-                "reference": "e82db7da6a546d3926c24c9a346226da7aa49094",
+                "url": "https://api.github.com/repos/ghunti/HighchartsPHP/zipball/548b321478510ec1559432a9baabbfba1a1e559a",
+                "reference": "548b321478510ec1559432a9baabbfba1a1e559a",
                 "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
             },
             "type": "library",
             "autoload": {
-                "classmap": [
-                    "lib/JpGraph.php"
-                ]
+                "psr-4": {
+                    "Ghunti\\HighchartsPHP\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "QPL 1.0"
+                "GPL-3.0"
             ],
             "authors": [
                 {
-                    "name": "JpGraph team"
+                    "name": "Gonçalo Queirós",
+                    "email": "mail@goncaloqueiros.net",
+                    "homepage": "http://goncaloqueiros.net",
+                    "role": "Developer"
                 }
             ],
-            "description": "jpGraph, library to make graphs and charts",
-            "homepage": "http://jpgraph.net/",
+            "description": "A php wrapper for highcharts and highstock javascript libraries",
+            "homepage": "http://goncaloqueiros.net/highcharts.php",
             "keywords": [
-                "chart",
-                "data",
-                "graph",
-                "jpgraph",
-                "pie"
+                "charts",
+                "highcharts",
+                "highstock",
+                "javascript",
+                "php"
             ],
-            "time": "2017-02-23T09:44:15+00:00"
+            "time": "2016-01-24 11:57:43"
         },
         {
             "name": "psr/container",
