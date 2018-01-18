@@ -43,6 +43,13 @@ class HightgraphController extends AbstractActionController
         $p1->SetColor('black');
         $p1->SetSliceColors(array('#1E90FF','#2E8B57','#ADFF2F','#DC143C','#BA55D3'));
         $graph->Stroke();
+        
+        if(!is_dir('/Travail/24hcode-master/public/tmp')){
+            mkdir('/Travail/24hcode-master/public/tmp', 0777, true);
+        }
+        if(file_exists('/Travail/24hcode-master/public/tmp/myimage.png')){
+            unlink('/Travail/24hcode-master/public/tmp/myimage.png');
+        }
  */
  
         // HIGHTCHART
@@ -172,13 +179,6 @@ class HightgraphController extends AbstractActionController
         
         $chart->tooltip->formatter = new HighchartJsExpr(
             "function() { return '<b>'+ this.series.name +'</b><br/>'+ this.x +': '+ this.y +'°C';}");
- 
-        if(!is_dir('/Travail/24hcode-master/public/tmp')){
-            mkdir('/Travail/24hcode-master/public/tmp', 0777, true);
-        }
-        if(file_exists('/Travail/24hcode-master/public/tmp/myimage.png')){
-            unlink('/Travail/24hcode-master/public/tmp/myimage.png');
-        }
         
         return new ViewModel([
             "myChart" => $chart->render("sct_container"),
