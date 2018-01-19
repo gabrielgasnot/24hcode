@@ -160,8 +160,8 @@ class Starship extends HcObj {
         $this->MGLT = $jsonData->MGLT;
         $this->cargo_capacity = $jsonData->cargo_capacity;
         $this->consumables = $jsonData->consumables;
-        $this->films = $jsonData->films;
-        $this->pilots = $jsonData->pilots;
+        $this->films = is_array($jsonData->films) ? implode(",", $jsonData->films) : "";
+        $this->pilots = is_array($jsonData->pilots) ? implode(",", $jsonData->pilots) : "";
         $this->url = $jsonData->url;
         $this->created = $jsonData->created;
         $this->edited = $jsonData->edited;
