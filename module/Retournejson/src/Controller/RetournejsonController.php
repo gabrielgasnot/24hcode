@@ -10,9 +10,21 @@ use Ghunti\HighchartsPHP\Highchart;
 use Ghunti\HighchartsPHP\HighchartJsExpr;
 use Ghunti\HighchartsPHP\HighchartOption;
 use Ghunti\HighchartsPHP\HighchartOptionRenderer;
+use Retournejson\Model\Starship;
+use Retournejson\Model\StarshipTable;
 
 class RetournejsonController extends AbstractActionController
 {
+    const SW_API_URL = "https://swapi.co/api/starships/";
+
+    // Add this property:
+    private $swTable;
+
+    // Add this constructor:
+    public function __construct(StarshipTable $swTable)
+    {
+        $this->swTable = $swTable;
+    }
 
     public function indexAction()
     {
@@ -197,29 +209,83 @@ class RetournejsonController extends AbstractActionController
         ]);
     }
 
-    public function starWarsAction()
+    public function autoLoadStarshipsAction()
     {
-        // Initialisation
-        $ch = curl_init();
+        $arrStarships = array();
 
-        // Config URL
-        curl_setopt($ch, CURLOPT_URL, "https://swapi.co/api/starships/");
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // Get Starships from API
+        $arr = $this->curlCallSwApi();
 
-        // Récupération de l'appel curl
-        $result = curl_exec($ch);
+        // Store starships in array
+        $arrStarships = array_merge($arrStarships, $arr->results);
 
-	$arr = json_decode($result);
-	$arrStarships = $arr->results;
+        // Call Api while there is still datas to fetch.
+        while(!is_null($arr->next))
+        {
+            $arr = $this->curlCallSwApi($arr->next);
+            $arrStarships = array_merge($arrStarships,$arr->results);
+        }
+     
+        // Build return array
+        $arrItemStarship = array();
 
-        // Fermeture de la session curl
-        curl_close($ch);
+        foreach($arrStarships as $item)
+        {
+            $starShip = new Starship();
+            $starShip->initFromJson($item);
+
+            // Insert starships to database
+            $this->swTable->saveStarship($starShip);
+
+            $arrItemStarship[] = $starShip->getDataArray(true);
+        }
 
         return new JsonModel([
             "status" => "SUCCESS",
             "message" => "SW Starships",
-            "data" => $arrStarships
+            "data" => $arrItemStarship
         ]);
+    }
 
+    public function getAction()
+    {
+        $allItems = $this->table->fetchAll();
+
+        return new JsonModel([
+            "status" => "SUCCESS",
+            "message" => "SW Starships",
+            "data" => $allItems
+        ]);
+    }
+
+    private function curlCallSwApi($url = null)
+    {
+        // Initialisation
+        $ch = curl_init();
+        
+        if (!$ch)
+            throw new \Exception('failed to initialize');
+
+        // Config URL
+        curl_setopt($ch, CURLOPT_URL, is_null($url) ? self::SW_API_URL : $url);
+        
+        // Pour éviter de dump la réponse directement dans la page.
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        // Si problème de certificat.
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+        // Récupération de l'appel curl
+        $result = curl_exec($ch);
+        if (!$result)
+            throw new \Exception(curl_error($ch), curl_errno($ch));
+
+        // Décodage du résultat.
+        $decodedResult = json_decode($result);
+
+        // Fermeture de la session curl
+        curl_close($ch);
+
+        return $decodedResult;
     }
 }

@@ -65,3 +65,54 @@ ALTER TABLE `album`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `starship`
+--
+
+CREATE TABLE `starship` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `model` varchar(100) NOT NULL,
+  `starship_class` varchar(100) NOT NULL,
+  `manufacturer` varchar(100) NOT NULL,
+  `cost_in_credits` varchar(100) NOT NULL,
+  `length` varchar(100) NOT NULL,
+  `crew` varchar(100) NOT NULL,
+  `passengers` varchar(100) NOT NULL,
+  `max_atmosphering_speed` varchar(100) NOT NULL,
+  `hyperdrive_rating` varchar(100) NOT NULL,
+  `MGLT` varchar(100) NOT NULL,
+  `cargo_capacity` varchar(100) NOT NULL,
+  `consumables` varchar(100) NOT NULL,
+  `films` varchar(100) NOT NULL,
+  `pilots` varchar(100) NOT NULL,
+  `url` varchar(100) NOT NULL,
+  `created` varchar(100) NOT NULL,
+  `edited` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Index pour les tables exportées
+--
+
+--
+-- Index pour la table `album`
+--
+ALTER TABLE `starship`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT pour les tables exportées
+--
+
+--
+-- AUTO_INCREMENT pour la table `album`
+--
+ALTER TABLE `starship`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

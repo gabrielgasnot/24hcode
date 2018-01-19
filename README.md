@@ -221,3 +221,11 @@ $ composer cs-fix
 # Run PHPUnit tests:
 $ composer test
 ```
+
+## Faire joujou avec SW API
+
+Charger les Starships en BDD
+> URL : http://[default_url]/retournejson/autoLoadStarships
+
+Afficher les Starships depuis la BDD
+> URL : http://[default_url]/retournejson/get
