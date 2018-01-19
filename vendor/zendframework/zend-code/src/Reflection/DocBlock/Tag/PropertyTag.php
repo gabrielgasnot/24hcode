@@ -9,10 +9,6 @@
 
 namespace Zend\Code\Reflection\DocBlock\Tag;
 
-use function explode;
-use function preg_match;
-use function rtrim;
-
 class PropertyTag implements TagInterface, PhpDocTypedTagInterface
 {
     /**
@@ -23,12 +19,12 @@ class PropertyTag implements TagInterface, PhpDocTypedTagInterface
     /**
      * @var string
      */
-    protected $propertyName;
+    protected $propertyName = null;
 
     /**
      * @var string
      */
-    protected $description;
+    protected $description = null;
 
     /**
      * @return string
@@ -46,7 +42,7 @@ class PropertyTag implements TagInterface, PhpDocTypedTagInterface
     public function initialize($tagDocblockLine)
     {
         $match = [];
-        if (! preg_match('#^(.+)?(\$[\S]+)[\s]*(.*)$#m', $tagDocblockLine, $match)) {
+        if (!preg_match('#^(.+)?(\$[\S]+)[\s]*(.*)$#m', $tagDocblockLine, $match)) {
             return;
         }
 
@@ -64,7 +60,7 @@ class PropertyTag implements TagInterface, PhpDocTypedTagInterface
     }
 
     /**
-     * @return void|string
+     * @return null|string
      * @deprecated 2.0.4 use getTypes instead
      */
     public function getType()

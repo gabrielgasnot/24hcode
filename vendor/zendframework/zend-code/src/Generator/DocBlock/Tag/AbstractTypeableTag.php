@@ -11,14 +11,9 @@ namespace Zend\Code\Generator\DocBlock\Tag;
 
 use Zend\Code\Generator\AbstractGenerator;
 
-use function explode;
-use function implode;
-use function is_string;
-
 /**
  * This abstract class can be used as parent for all tags
  * that use a type part in their content.
- *
  * @see http://www.phpdoc.org/docs/latest/for-users/phpdoc/types.html
  */
 abstract class AbstractTypeableTag extends AbstractGenerator
@@ -26,7 +21,7 @@ abstract class AbstractTypeableTag extends AbstractGenerator
     /**
      * @var string
      */
-    protected $description;
+    protected $description = null;
 
     /**
      * @var array
@@ -34,16 +29,16 @@ abstract class AbstractTypeableTag extends AbstractGenerator
     protected $types = [];
 
     /**
-     * @param string|string[] $types
-     * @param string          $description
+     * @param array $types
+     * @param string $description
      */
     public function __construct($types = [], $description = null)
     {
-        if (! empty($types)) {
+        if (!empty($types)) {
             $this->setTypes($types);
         }
 
-        if (! empty($description)) {
+        if (!empty($description)) {
             $this->setDescription($description);
         }
     }
