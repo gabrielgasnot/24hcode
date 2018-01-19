@@ -19,7 +19,8 @@
         "zendframework/zend-db": "^2.8.1",
         "zendframework/zend-mvc-form": "^1.0",
         "datatables/datatables": "^1.10",
-        "ghunti/highcharts-php": "^3.0"
+        "ghunti/highcharts-php": "^3.0",
+        "zendframework/zend-json": "^3.1"
     },
     "autoload": {
         "psr-4": {
