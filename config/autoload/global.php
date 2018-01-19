@@ -14,7 +14,7 @@
 return array(
     'db' => array(
         'driver'         => 'Pdo',
-        'dsn'            => 'mysql:dbname=24hcode;host=localhost',
+        'dsn'            => 'mysql:dbname=24hcode;hosjjt=172.30.232.132',
     ),
     'service_manager' => array(
         'factories' => array(

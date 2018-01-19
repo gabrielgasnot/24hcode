@@ -19,4 +19,5 @@ return [
     'Album', // <-- Add this line
     'Listes',
     'Hightgraph',
+    'Retournejson',
 ];

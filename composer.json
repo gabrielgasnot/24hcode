@@ -26,7 +26,8 @@
             "Application\\": "module/Application/src/",
             "Album\\": "module/Album/src/",
             "Listes\\": "module/Listes/src/",
-            "Hightgraph\\": "module/Hightgraph/src/"            
+            "Hightgraph\\": "module/Hightgraph/src/",           
+            "Retournejson\\": "module/Retournejson/src/"
         }
     },
     "autoload-dev": {
