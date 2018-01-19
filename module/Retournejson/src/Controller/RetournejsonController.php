@@ -204,10 +204,13 @@ class RetournejsonController extends AbstractActionController
 
         // Config URL
         curl_setopt($ch, CURLOPT_URL, "https://swapi.co/api/starships/");
-        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
         // Récupération de l'appel curl
-        $rawStarships = curl_exec($ch);
+        $result = curl_exec($ch);
+
+	$arr = json_decode($result);
+	$arrStarships = $arr->results;
 
         // Fermeture de la session curl
         curl_close($ch);
@@ -215,7 +218,8 @@ class RetournejsonController extends AbstractActionController
         return new JsonModel([
             "status" => "SUCCESS",
             "message" => "SW Starships",
-            "data" => $rawStarships
+            "data" => $arrStarships
         ]);
+
     }
 }
