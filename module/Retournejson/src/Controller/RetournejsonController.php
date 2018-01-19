@@ -196,4 +196,26 @@ class RetournejsonController extends AbstractActionController
             ]
         ]);
     }
+
+    public function starWarsAction()
+    {
+        // Initialisation
+        $ch = curl_init();
+
+        // Config URL
+        curl_setopt($ch, CURLOPT_URL, "https://swapi.co/api/starships/");
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+
+        // Récupération de l'appel curl
+        $rawStarships = curl_exec($ch);
+
+        // Fermeture de la session curl
+        curl_close($ch);
+
+        return new JsonModel([
+            "status" => "SUCCESS",
+            "message" => "SW Starships",
+            "data" => $rawStarships
+        ]);
+    }
 }
