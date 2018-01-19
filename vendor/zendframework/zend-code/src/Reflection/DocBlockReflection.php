@@ -14,56 +14,44 @@ use Zend\Code\Reflection\DocBlock\Tag\TagInterface as DocBlockTagInterface;
 use Zend\Code\Reflection\DocBlock\TagManager as DocBlockTagManager;
 use Zend\Code\Scanner\DocBlockScanner;
 
-use function count;
-use function get_class;
-use function is_string;
-use function ltrim;
-use function method_exists;
-use function preg_replace;
-use function sprintf;
-use function substr_count;
-
 class DocBlockReflection implements ReflectionInterface
 {
     /**
      * @var Reflector
      */
-    protected $reflector;
+    protected $reflector = null;
 
     /**
      * @var string
      */
-    protected $docComment;
+    protected $docComment = null;
 
     /**
      * @var DocBlockTagManager
      */
-    protected $tagManager;
+    protected $tagManager = null;
 
-    /**
+    /**#@+
      * @var int
      */
-    protected $startLine;
-
-    /**
-     * @var int
-     */
-    protected $endLine;
+    protected $startLine = null;
+    protected $endLine = null;
+    /**#@-*/
 
     /**
      * @var string
      */
-    protected $cleanDocComment;
+    protected $cleanDocComment = null;
 
     /**
      * @var string
      */
-    protected $longDescription;
+    protected $longDescription = null;
 
     /**
      * @var string
      */
-    protected $shortDescription;
+    protected $shortDescription = null;
 
     /**
      * @var array
@@ -95,7 +83,7 @@ class DocBlockReflection implements ReflectionInterface
      */
     public function __construct($commentOrReflector, DocBlockTagManager $tagManager = null)
     {
-        if (! $tagManager) {
+        if (!$tagManager) {
             $tagManager = new DocBlockTagManager();
             $tagManager->initializeDefaultTags();
         }
@@ -103,7 +91,7 @@ class DocBlockReflection implements ReflectionInterface
 
         if ($commentOrReflector instanceof Reflector) {
             $this->reflector = $commentOrReflector;
-            if (! method_exists($commentOrReflector, 'getDocComment')) {
+            if (!method_exists($commentOrReflector, 'getDocComment')) {
                 throw new Exception\InvalidArgumentException('Reflector must contain method "getDocComment"');
             }
             /* @var MethodReflection $commentOrReflector */
@@ -234,7 +222,7 @@ class DocBlockReflection implements ReflectionInterface
     public function getTags($filter = null)
     {
         $this->reflect();
-        if ($filter === null || ! is_string($filter)) {
+        if ($filter === null || !is_string($filter)) {
             return $this->tags;
         }
 
@@ -283,15 +271,15 @@ class DocBlockReflection implements ReflectionInterface
      */
     public function toString()
     {
-        $str = 'DocBlock [ /* DocBlock */ ] {' . "\n\n";
-        $str .= '  - Tags [' . count($this->tags) . '] {' . "\n";
+        $str = "DocBlock [ /* DocBlock */ ] {" . "\n" . "\n";
+        $str .= "  - Tags [" . count($this->tags) . "] {" . "\n";
 
         foreach ($this->tags as $tag) {
-            $str .= '    ' . $tag;
+            $str .= "    " . $tag;
         }
 
-        $str .= '  }' . "\n";
-        $str .= '}' . "\n";
+        $str .= "  }" . "\n";
+        $str .= "}" . "\n";
 
         return $str;
     }
