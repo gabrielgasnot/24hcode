@@ -249,12 +249,15 @@ class RetournejsonController extends AbstractActionController
 
     public function getAction()
     {
-        $allItems = $this->table->fetchAll();
-
+        $allItems = $this->swTable->fetchAll();
+        $arr = array();
+        foreach($allItems as $starShip){
+            $arr[] = $starShip->getDataArray();
+        }
         return new JsonModel([
             "status" => "SUCCESS",
             "message" => "SW Starships",
-            "data" => $allItems
+            "data" => $arr
         ]);
     }
 
