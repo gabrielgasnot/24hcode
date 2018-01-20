@@ -12,6 +12,8 @@ use Ghunti\HighchartsPHP\HighchartOption;
 use Ghunti\HighchartsPHP\HighchartOptionRenderer;
 use Retournejson\Model\Starship;
 use Retournejson\Model\StarshipTable;
+use Retournejson\Model\Highway;
+use Retournejson\Model\Calcul as Calculatrice;
 
 class RetournejsonController extends AbstractActionController
 {
@@ -234,6 +236,8 @@ class RetournejsonController extends AbstractActionController
             $starShip = new Starship();
             $starShip->initFromJson($item);
 
+            $highway = new Highway();
+            $highway->canGo();
             // Insert starships to database
             $this->swTable->saveStarship($starShip);
 
@@ -249,19 +253,29 @@ class RetournejsonController extends AbstractActionController
 
     public function getAction()
     {
-        $allItems = $this->swTable->fetchAll();
-        $arr = array();
-        foreach($allItems as $starShip){
-            $arr[] = $starShip->getDataArray();
-        }
+        $lat1 = 48.0819;
+        $long1 = 0.4154;
+        $lat2 = 48.0826;
+        $long2 = 0.4166;
+
+        var_dump(Calculatrice::getDistanceM($lat1, $long1, $lat2, $long2));
+        /*
+        $queryUrl = "http://overpass-api.de/api/interpreter?data=";
+        $queryHeader = "[out:json];";
+        $queryContent = "way(47.984393,0.236012,47.984946,0.238951)[highway];(._;>;);";
+        $queryEnd = "out;";
+        
+        $fullQuery = $queryUrl . $queryHeader . $queryContent . $queryEnd;
+        $rawData = $this->curlCallSwApi($fullQuery, true);
+var_dump($rawData);
         return new JsonModel([
             "status" => "SUCCESS",
-            "message" => "SW Starships",
-            "data" => $arr
-        ]);
+            "message" => "Call Overpass",
+            "data" => $rawData
+        ]);*/
     }
 
-    private function curlCallSwApi($url = null)
+    private function curlCallSwApi($url = null, $brut = false)
     {
         // Initialisation
         $ch = curl_init();
@@ -283,9 +297,13 @@ class RetournejsonController extends AbstractActionController
         if (!$result)
             throw new \Exception(curl_error($ch), curl_errno($ch));
 
-        // Décodage du résultat.
-        $decodedResult = json_decode($result);
-
+        if(!$brut) {
+            // Décodage du résultat.
+            $decodedResult = json_decode($result);
+        }
+        else {
+            $decodedResult = $result;
+        }
         // Fermeture de la session curl
         curl_close($ch);
 
