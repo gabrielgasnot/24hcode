@@ -19,5 +19,6 @@ return [
     'Album', // <-- Add this line
     'Listes',
     'Hightgraph',
-    'Retournejson'
+    'Retournejson',
+    'Fourmi'
 ];

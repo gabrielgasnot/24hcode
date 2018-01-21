@@ -35,6 +35,7 @@ return array(
     'Interop\\Container\\' => array($vendorDir . '/container-interop/container-interop/src/Interop/Container'),
     'Hightgraph\\' => array($baseDir . '/module/Hightgraph/src'),
     'Ghunti\\HighchartsPHP\\' => array($vendorDir . '/ghunti/highcharts-php/src'),
+    'Fourmi\\' => array($baseDir . '/module/Fourmi/src'),
     'Application\\' => array($baseDir . '/module/Application/src'),
     'ApplicationTest\\' => array($baseDir . '/module/Application/test'),
     'Album\\' => array($baseDir . '/module/Album/src'),

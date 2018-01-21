@@ -61,6 +61,10 @@ class ComposerStaticInita1c419e277dfb1f66d5ae905c6f13373
         array (
             'Ghunti\\HighchartsPHP\\' => 21,
         ),
+        'F' => 
+        array (
+            'Fourmi\\' => 7,
+        ),
         'A' => 
         array (
             'Application\\' => 12,
@@ -185,6 +189,10 @@ class ComposerStaticInita1c419e277dfb1f66d5ae905c6f13373
         'Ghunti\\HighchartsPHP\\' => 
         array (
             0 => __DIR__ . '/..' . '/ghunti/highcharts-php/src',
+        ),
+        'Fourmi\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/module/Fourmi/src',
         ),
         'Application\\' => 
         array (

@@ -229,3 +229,9 @@ Charger les Starships en BDD
 
 Afficher les Starships depuis la BDD
 > URL : http://[default_url]/retournejson/get
+
+## URL Seed
+https://f24h2018.herokuapp.com/
+
+## URL Seed Docs
+https://f24h2018.herokuapp.com/docs

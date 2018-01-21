@@ -28,7 +28,8 @@
             "Album\\": "module/Album/src/",
             "Listes\\": "module/Listes/src/",
             "Hightgraph\\": "module/Hightgraph/src/",           
-            "Retournejson\\": "module/Retournejson/src/"
+            "Retournejson\\": "module/Retournejson/src/",
+            "Fourmi\\": "module/Fourmi/src/"
         }
     },
     "autoload-dev": {

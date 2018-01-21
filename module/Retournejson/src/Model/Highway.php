@@ -24,5 +24,7 @@ class Highway {
         
     ];
 
-    
+    public function canGo(array $array){
+        
+    }
 }
