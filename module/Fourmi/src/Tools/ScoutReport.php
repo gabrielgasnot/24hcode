@@ -95,7 +95,7 @@ class ScoutReport extends HcObj {
      */
     public function getAllNodes()
     {
-        $strNodes = "[out:json];(";
+        $strNodes = "(";
 
         foreach($this->nodes as $node)
         {

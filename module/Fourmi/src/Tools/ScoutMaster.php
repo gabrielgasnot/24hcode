@@ -26,6 +26,7 @@ class ScoutMaster extends HcObj {
 
         return CurlyCrawler::call($ch);
     }
+
     private static function checkNodes($jsonNodes, $jsonRelations, ScoutReport $report) {
         $arrayHighway = array_filter($jsonRelations->features, function($feature) {
             return property_exists($feature->properties, "highway");
