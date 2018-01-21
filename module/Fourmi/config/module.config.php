@@ -40,7 +40,7 @@ return [
                     ],
                     'defaults' => [
                         'controller' => Controller\FourmiController::class,
-                        'action'     => 'index',
+                        'action'     => 'cicada',
                     ],
                 ],
             ],

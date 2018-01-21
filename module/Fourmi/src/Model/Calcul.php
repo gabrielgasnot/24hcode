@@ -19,4 +19,11 @@ class Calcul {
         $d = 2 * atan2(sqrt($a), sqrt(1 - $a));
         return ($earth_radius * $d);
     }
+
+    static function duree($date1, $date2) {
+        $dateTime = new \DateTime( $date1 );
+        $dateTime2 = new \DateTime( $date2 );
+
+        return (float)((float)$dateTime2->getTimestamp() -  (float)$dateTime->getTimestamp());
+    }
 }

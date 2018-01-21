@@ -4,6 +4,8 @@ namespace Fourmi\Model;
 
 use Application\Model\HcObj;
 use Fourmi\Tools\Scout;
+use Fourmi\Model\Fourmi;
+use Fourmi\Tools\ScoutReport;
 
 class Reine extends HcObj {
     private $arrayDistance = [
@@ -11,6 +13,9 @@ class Reine extends HcObj {
         "après lycée Sud" => 2
     ];
 
+    private $authorization;
+    private $edibleSeedId;
+    private $startSeedId;
     const MAX_WEIGHT = 1000;
 
     private $knowSeeds = array();
@@ -19,8 +24,9 @@ class Reine extends HcObj {
      * Reine constructor.
      * @param array $knowSeeds
      */
-    public function __construct(array $knowSeeds)
+    public function __construct(array $knowSeeds, $auth)
     {
+        $this->authorization = $auth;
         $this->knowSeeds = $knowSeeds;
     }
 
@@ -74,7 +80,7 @@ class Reine extends HcObj {
     /**
      * Add weight to seed through distance.
      *
-     * @return bool
+     * @return array
      */
     private function getWeightedSeeds() {
         $activeSeeds = $this->getActiveSeeds();
@@ -132,14 +138,16 @@ class Reine extends HcObj {
     {
         // The Queen decides which seed should be harvest.
         $edibleSeed = $this->determineSeed();
+        $this->edibleSeedId = $edibleSeed->getId();
         // The Queen reminds its people where they are standing.
         $homePoint = $this->getHomeSeed();
+        $this->startSeedId = $homePoint->getId();
         // Send the scout for the exit seed.
         return new Scout($edibleSeed->location->coordinates, $homePoint->location->coordinates);
     }
 
     public function hatchAnt(array $reports)
     {
-
+        return new Fourmi($this->startSeedId, $this->edibleSeedId, $reports[ScoutReport::SCOUT_REPORT_SENS_ALLER], $reports[ScoutReport::SCOUT_REPORT_SENS_RETOUR], $this->authorization);
     }
 }

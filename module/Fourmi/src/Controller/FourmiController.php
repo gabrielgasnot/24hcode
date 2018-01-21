@@ -42,9 +42,11 @@ class FourmiController extends AbstractActionController
         // Ask the scout report.
         $reports = $scout->generateReports();
         // Submit the reports to the ScoutMaster
-        ScoutMaster::annotateReports($reports);
+        // ScoutMaster::annotateReports($reports);
         // Send the ant !
-        $fourmi = $queen->hatchAnt();
+        $fourmi = $queen->hatchAnt($reports);
+
+        $fourmi->go();
 
         return new JsonModel([
             "status" => "SUCCESS",
@@ -58,6 +60,12 @@ class FourmiController extends AbstractActionController
         $cicada = $this->nest->wakeCicada();
 
         $cicada->analyseTracks();
+
+        return new JsonModel([
+            "status" => "SUCCESS",
+            "message" => "Call Overpass",
+            "data" => "test"
+        ]);
     }
 
     private function curlCallOverpass($url)

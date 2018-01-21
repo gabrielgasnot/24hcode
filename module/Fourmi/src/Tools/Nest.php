@@ -100,7 +100,7 @@ class Nest extends HcObj {
 
     public function meetTheQueen(array $seedArray)
     {
-        return new Reine($seedArray);
+        return new Reine($seedArray, $this->authorization);
     }
 
     public function wakeCicada() {

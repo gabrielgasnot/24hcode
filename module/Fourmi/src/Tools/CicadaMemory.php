@@ -29,7 +29,7 @@ class CicadaMemory extends HcObj
     /**
      * @return mixed
      */
-    public function getTrackId()
+    public function getTrack_id()
     {
         return $this->track_id;
     }
@@ -37,7 +37,7 @@ class CicadaMemory extends HcObj
     /**
      * @param mixed $track_id
      */
-    public function setTrackId($track_id)
+    public function setTrack_id($track_id)
     {
         $this->track_id = $track_id;
     }

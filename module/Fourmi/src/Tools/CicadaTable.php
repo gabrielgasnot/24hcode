@@ -21,7 +21,13 @@ class CicadaTable
 
     public function fetchAllNotDone()
     {
-        return $this->tableGateway->select(['done' => false]);
+        $result = array();
+        $rowset = $this->tableGateway->select(['done' => 0]);
+        foreach($rowset as $row) {
+            $result[] =$row;
+        }
+
+        return $result;
     }
 
     public function get($id)
